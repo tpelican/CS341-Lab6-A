@@ -15,8 +15,8 @@
 /// The MainPage, this is a 1-screen app
 /// </summary>
 public partial class MainPage : ContentPage {
-    TicTacToeGame ticTacToe; // model class
-    Button[,] grid;          // stores the buttons
+    TicTacToeGame ticTacToe;                // model class
+    Button[,] grid;                         // stores the buttons
 
 
     /// <summary>
