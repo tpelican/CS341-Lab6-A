@@ -1,15 +1,13 @@
 ﻿namespace Lab6Starter;
 
 /**
- * 
- * Name: 
- * Date:
- * Description: And this?
- * Bugs:
- * Reflection:
- * 
+ * Name: Shabbar & Thomas
+ * Date: 11/05/2022
+ * Description:This the main page for the Tic-Tac-Toe application
+ * Bugs: n/a
+ * Reflection: It was fairly simple, but a valueable experience in 
+ * forking repos, GitHub, and paired programming.
  */
-
 
 public static class MauiProgram
 {
@@ -27,4 +25,3 @@ public static class MauiProgram
 		return builder.Build();
 	}
 }
-
