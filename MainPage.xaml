@@ -9,8 +9,9 @@
             <Label x:Name="XScoreLBL" Text="X's Score: 0"   VerticalOptions="Center" FontSize="24"/>
             <Label x:Name="OScoreLBL" Text="Y's Score: 0"  VerticalOptions="Center" FontSize="24"/>
 
-            <Grid Background="Chartreuse" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+            <Grid Background="cyan" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -19,8 +20,10 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button HeightRequest = "100" WidthRequest="100" BackgroundColor="Orange" Grid.Row="0" Grid.Column="0" x:Name="Tile00" Text="XXXXX" HorizontalOptions="Center"  VerticalOptions="Center"  Clicked="HandleButtonClick" FontSize="24"/>
+                <!--Tile00 should not be filled with xxxx at the start-->
+                <Button HeightRequest = "100" WidthRequest="100" BackgroundColor="Orange" Grid.Row="0" Grid.Column="0" x:Name="Tile00" Text="" HorizontalOptions="Center"  VerticalOptions="Center"  Clicked="HandleButtonClick" FontSize="24"/>
                 <Button HeightRequest = "100" WidthRequest="100"  BackgroundColor="Yellow" Grid.Row="0" Grid.Column="1" x:Name="Tile01" Text="" HorizontalOptions="Center"  VerticalOptions="Center" Clicked="HandleButtonClick" FontSize="24"/>
                 <Button HeightRequest = "100" WidthRequest="100"  BackgroundColor="Green" Grid.Row="0" Grid.Column="2" x:Name="Tile02" Text="" HorizontalOptions="Center"  VerticalOptions="Center" Clicked="HandleButtonClick" FontSize="24"/>
                 <Button HeightRequest = "100" WidthRequest="100" BackgroundColor="Blue" Grid.Row="1" Grid.Column="0" x:Name="Tile10" Text="" HorizontalOptions="Center"  VerticalOptions="Center"  Clicked="HandleButtonClick" FontSize="24"/>

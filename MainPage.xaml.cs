@@ -94,11 +94,27 @@ public partial class MainPage : ContentPage
     /// <summary>
     /// Celebrates victory, displaying a message box and resetting the game
     /// </summary>
-    private void CelebrateVictory(Player victor)
+    private async void CelebrateVictory(Player victor)
     {
-        //MessageBox.Show(Application.Current.MainWindow, String.Format("Congratulations, {0}, you're the big winner today", victor.ToString()));
-        XScoreLBL.Text = String.Format("X's Score: {0}", ticTacToe.XScore);
-        OScoreLBL.Text = String.Format("O's Score: {0}", ticTacToe.OScore);
+      
+        await DisplayAlert("Victory", String.Format("Congratulations, {0}, you're the big winner today", victor.ToString()), "OK");
+
+        if (victor.Equals("O"))
+        {
+            XScoreLBL.Text = String.Format("X's Score: {0}", ticTacToe.XScore);
+            OScoreLBL.Text = String.Format("O's Score: {0}", ++ticTacToe.OScore);
+        }
+        else if (victor.Equals("X"))
+        {
+
+            XScoreLBL.Text = String.Format("X's Score: {0}", ++ticTacToe.XScore);
+            OScoreLBL.Text = String.Format("O's Score: {0}", ticTacToe.OScore);
+        }
+        else
+        {
+            XScoreLBL.Text = String.Format("X's Score: {0}", ++ticTacToe.XScore);
+            OScoreLBL.Text = String.Format("O's Score: {0}", ticTacToe.OScore);
+        }
 
         ResetGame();
     }
@@ -108,9 +124,20 @@ public partial class MainPage : ContentPage
     /// </summary>
     private void ResetGame()
     {
+        Tile00.Text = "";
+        Tile10.Text = "";
+        Tile20.Text = "";
 
+        Tile01.Text = "";
+        Tile11.Text = "";
+        Tile21.Text = "";
+
+        Tile02.Text = "";
+        Tile12.Text = "";
+        Tile22.Text = "";
+
+        ticTacToe.ResetGame();
     }
-
 }
 
 
