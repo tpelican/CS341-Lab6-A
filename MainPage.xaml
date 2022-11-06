@@ -5,36 +5,137 @@
              x:Class="Lab6Starter.MainPage">
 
     <ScrollView>
-        <VerticalStackLayout>
+        <VerticalStackLayout Spacing="5">
+            <Label x:Name="XScoreLBL" Text="X's Score: 0"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="24"
+                   FontAttributes="Bold"/>
+            <Label x:Name="OScoreLBL" Text="Y's Score: 0"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="24" FontAttributes="Bold"/>
+            <HorizontalStackLayout Padding="10" Spacing="10" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
 
-            <Label x:Name="XScoreLBL" Text="X's Score: 0"   VerticalOptions="Center" FontSize="24"/>
-            <Label x:Name="OScoreLBL" Text="Y's Score: 0"  VerticalOptions="Center" FontSize="24"/>
+            <VerticalStackLayout>
+                <HorizontalStackLayout Spacing="100" BackgroundColor="White"
+                                       VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        FontSize="18"
+                                        Text="Id"
+                                        TextColor="Black"
+                                        BackgroundColor="White"
+                                        FontAttributes="Bold,Italic"/>
+                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        FontSize="18"
+                                        Text="Date"
+                                        TextColor="Black"
+                                        BackgroundColor="White"
+                                        FontAttributes="Bold,Italic"/>
+                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="2"
+                                        FontSize="18"
+                                        Text="Winner"
+                                        TextColor="Black"
+                                        BackgroundColor="White"
+                                        FontAttributes="Bold,Italic"/>
+                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="3"
+                                        FontSize="18"
+                                        Text="Duration"
+                                        TextColor="Black"
+                                        BackgroundColor="White"
+                                        FontAttributes="Bold,Italic"/>
 
-            <Grid Background="cyan" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <!--Tile00 should not be filled with xxxx at the start-->
-                <Button HeightRequest = "100" WidthRequest="100" BackgroundColor="White" Grid.Row="0" Grid.Column="0" x:Name="Tile00" Text="" HorizontalOptions="Center"  VerticalOptions="Center"  Clicked="HandleButtonClick" FontSize="24"/>
-                <Button HeightRequest = "100" WidthRequest="100"  BackgroundColor="White" Grid.Row="0" Grid.Column="1" x:Name="Tile01" Text="" HorizontalOptions="Center"  VerticalOptions="Center" Clicked="HandleButtonClick" FontSize="24"/>
-                <Button HeightRequest = "100" WidthRequest="100"  BackgroundColor="White" Grid.Row="0" Grid.Column="2" x:Name="Tile02" Text="" HorizontalOptions="Center"  VerticalOptions="Center" Clicked="HandleButtonClick" FontSize="24"/>
-                <Button HeightRequest = "100" WidthRequest="100" BackgroundColor="White" Grid.Row="1" Grid.Column="0" x:Name="Tile10" Text="" HorizontalOptions="Center"  VerticalOptions="Center"  Clicked="HandleButtonClick" FontSize="24"/>
-                <Button HeightRequest = "100" WidthRequest="100" BackgroundColor="White" Grid.Row="1" Grid.Column="1" x:Name="Tile11" Text="" HorizontalOptions="Center"  VerticalOptions="Center"  Clicked="HandleButtonClick" FontSize="24"/>
-                <Button HeightRequest = "100" WidthRequest="100" BackgroundColor="White" Grid.Row="1" Grid.Column="2" x:Name="Tile12" Text="" HorizontalOptions="Center"  VerticalOptions="Center" Clicked="HandleButtonClick" FontSize="24"/>
-                <Button HeightRequest = "100" WidthRequest="100" BackgroundColor="White" Grid.Row="2" Grid.Column="0" x:Name="Tile20" Text="" HorizontalOptions="Center"  VerticalOptions="Center"  Clicked="HandleButtonClick" FontSize="24"/>
-                <Button HeightRequest = "100" WidthRequest="100" BackgroundColor="White" Grid.Row="2" Grid.Column="1" x:Name="Tile21" Text="" HorizontalOptions="Center" VerticalOptions="Center"  Clicked="HandleButtonClick" FontSize="24"/>
-                <Button HeightRequest = "100" WidthRequest="100" BackgroundColor="White" Grid.Row="2" Grid.Column="2" x:Name="Tile22" Text="" HorizontalOptions="Center"  VerticalOptions="Center" Clicked="HandleButtonClick" FontSize="24"/>
-            </Grid>
-        </VerticalStackLayout>
+                </HorizontalStackLayout>
+                <ListView
+                    x:Name="EntriesLV"
+                    MinimumHeightRequest="500"
+                    MinimumWidthRequest="500"
+                    MaximumWidthRequest="550"
+                    MaximumHeightRequest="550"
+                    SelectionMode="Single"
+                    HorizontalScrollBarVisibility="Always"
+                    BackgroundColor="LightGrey"
+                    SeparatorColor="MidnightBlue"
+                    VerticalOptions="Fill">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid ColumnSpacing="100" Padding="5" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        FontSize="18"
+                                        Text="{Binding Id}"
+                                        TextColor="Black"/>
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        FontSize="18"
+                                        Text="{Binding Date}"
+                                        TextColor="Black"/>
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="2"
+                                        FontSize="18"
+                                        Text="{Binding Winner}"
+                                        TextColor="Black"/>
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="3"
+                                        FontSize="18"
+                                        Text="{Binding Time}"
+                                        TextColor="Black"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </VerticalStackLayout>
+            <VerticalStackLayout Padding="10">
+                <!--Counter for the game-->
+                <Label x:Name="TimeLabel" Text="0m 0s" HorizontalTextAlignment="Center" FontSize="24"/>
+
+                <Grid Background="cyan" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--Tile00 should not be filled with xxxx at the start-->
+                    <Button HeightRequest = "100" WidthRequest="100" BackgroundColor="White" Grid.Row="0" Grid.Column="0" x:Name="Tile00" Text="" HorizontalOptions="Center"  VerticalOptions="Center"  Clicked="HandleButtonClick" FontSize="36" FontAttributes="Bold" TextColor="Black"/>
+                    <Button HeightRequest = "100" WidthRequest="100"  BackgroundColor="White" Grid.Row="0" Grid.Column="1" x:Name="Tile01" Text="" HorizontalOptions="Center"  VerticalOptions="Center" Clicked="HandleButtonClick" FontSize="36" FontAttributes="Bold" TextColor="Black"/>
+                    <Button HeightRequest = "100" WidthRequest="100"  BackgroundColor="White" Grid.Row="0" Grid.Column="2" x:Name="Tile02" Text="" HorizontalOptions="Center"  VerticalOptions="Center" Clicked="HandleButtonClick" FontSize="36" FontAttributes="Bold" TextColor="Black"/>
+                    <Button HeightRequest = "100" WidthRequest="100" BackgroundColor="White" Grid.Row="1" Grid.Column="0" x:Name="Tile10" Text="" HorizontalOptions="Center"  VerticalOptions="Center"  Clicked="HandleButtonClick" FontSize="36" FontAttributes="Bold" TextColor="Black"/>
+                    <Button HeightRequest = "100" WidthRequest="100" BackgroundColor="White" Grid.Row="1" Grid.Column="1" x:Name="Tile11" Text="" HorizontalOptions="Center"  VerticalOptions="Center"  Clicked="HandleButtonClick" FontSize="36" FontAttributes="Bold" TextColor="Black"/>
+                    <Button HeightRequest = "100" WidthRequest="100" BackgroundColor="White" Grid.Row="1" Grid.Column="2" x:Name="Tile12" Text="" HorizontalOptions="Center"  VerticalOptions="Center" Clicked="HandleButtonClick" FontSize="36" FontAttributes="Bold" TextColor="Black"/>
+                    <Button HeightRequest = "100" WidthRequest="100" BackgroundColor="White" Grid.Row="2" Grid.Column="0" x:Name="Tile20" Text="" HorizontalOptions="Center"  VerticalOptions="Center"  Clicked="HandleButtonClick" FontSize="36" FontAttributes="Bold" TextColor="Black"/>
+                    <Button HeightRequest = "100" WidthRequest="100" BackgroundColor="White" Grid.Row="2" Grid.Column="1" x:Name="Tile21" Text="" HorizontalOptions="Center" VerticalOptions="Center"  Clicked="HandleButtonClick" FontSize="36" FontAttributes="Bold" TextColor="Black"/>
+                    <Button HeightRequest = "100" WidthRequest="100" BackgroundColor="White" Grid.Row="2" Grid.Column="2" x:Name="Tile22" Text="" HorizontalOptions="Center"  VerticalOptions="Center" Clicked="HandleButtonClick" FontSize="36" FontAttributes="Bold" TextColor="Black"/>
+                </Grid>
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
+       </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
 

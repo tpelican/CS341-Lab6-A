@@ -1,5 +1,7 @@
-﻿namespace Lab6Starter;
+﻿//using Android.Service.QuickSettings;
+using System.Collections.ObjectModel;
 
+namespace Lab6Starter;
 /**
  * Name: Shabbar & Thomas
  * Date: 11/05/2022
@@ -17,14 +19,26 @@ public partial class MainPage : ContentPage {
     TicTacToeGame ticTacToe;                // model class
     Button[,] grid;                         // stores the buttons
 
+    private static TimeOnly timer;          // timer object
+    private static bool gameOver;
+    Database db;
 
     /// <summary>
     /// initializes the component
     /// </summary>
     public MainPage() {
         InitializeComponent();
+        db = new Database();
+        EntriesLV.ItemsSource = db.GetEntries();
         ticTacToe = new TicTacToeGame();
-        grid = new Button[ TicTacToeGame.GRID_SIZE, TicTacToeGame.GRID_SIZE ] { { Tile00, Tile01, Tile02 }, { Tile10, Tile11, Tile12 }, { Tile20, Tile21, Tile22 } };
+        grid = new Button[ TicTacToeGame.GRID_SIZE, TicTacToeGame.GRID_SIZE ] { 
+            { Tile00, Tile01, Tile02 }, 
+            { Tile10, Tile11, Tile12 }, 
+            { Tile20, Tile21, Tile22 } 
+        };
+        RandomizeTileColors();
+        gameOver = false;
+        StartGameTimer();
     }
 
     /// <summary>
@@ -43,16 +57,15 @@ public partial class MainPage : ContentPage {
         int col;
 
         FindTappedButtonRowCol( button, out row, out col );
-        if ( button.Text.ToString() != "" ) { // if the button has an X or O, bail
+        if ( !button.Text.ToString().Equals( "" ) ) { // if the button has an X or O, bail
             DisplayAlert( "Illegal move", "Fill this in with something more meaningful", "OK" );
-            return;
-        }
-        button.Text = currentPlayer.ToString();
-        Boolean gameOver = ticTacToe.ProcessTurn( row, col, out victor );
+        } else {
+            button.Text = currentPlayer.ToString();
+            gameOver = ticTacToe.ProcessTurn( row, col, out victor );
 
-        if ( gameOver ) {
-            CelebrateVictory( victor );
-
+            if ( gameOver ) {
+                CelebrateVictory( victor );
+            }
         }
     }
 
@@ -82,40 +95,77 @@ public partial class MainPage : ContentPage {
     /// Celebrates victory, displaying a message box and resetting the game
     /// </summary>
     private async void CelebrateVictory( Player victor ) {
-
-        await DisplayAlert( "Victory", String.Format( "Congratulations, {0}, you're the big winner today", victor.ToString() ), "OK" );
+        await DisplayAlert( "Victory",
+            String.Format( "Congratulations, {0}, you're the big winner today",
+                victor.ToString() ), "OK" );
 
         if ( victor.Equals( "O" ) ) {
             XScoreLBL.Text = String.Format( "X's Score: {0}", ticTacToe.XScore );
             OScoreLBL.Text = String.Format( "O's Score: {0}", ++ticTacToe.OScore );
         } else if ( victor.Equals( "X" ) ) {
-
             XScoreLBL.Text = String.Format( "X's Score: {0}", ++ticTacToe.XScore );
             OScoreLBL.Text = String.Format( "O's Score: {0}", ticTacToe.OScore );
         } else {
             XScoreLBL.Text = String.Format( "X's Score: {0}", ++ticTacToe.XScore );
             OScoreLBL.Text = String.Format( "O's Score: {0}", ticTacToe.OScore );
         }
-
+        System.Diagnostics.Debug.WriteLine( "\n\n\n\n" + new DateTime().Date.ToString() );
+        AddResultEntry(
+            db.GetEntries().Count + 1,
+            DateOnly.FromDateTime( DateTime.Now ).ToString(),
+            victor.ToString(),
+            TimeLabel.Text );
         ResetGame();
+    }
+
+    /// <summary> This is the game timer for the tic-tac-toe 
+    /// </summary>
+    public async void StartGameTimer() {
+        timer = new();
+
+        while ( !gameOver ) {
+            await Task.Delay( TimeSpan.FromSeconds( 1 ) );
+            timer = timer.Add( TimeSpan.FromSeconds( 1 ) );
+            TimeLabel.Text = $"{timer.Minute}m {timer.Second: 0}s";
+        }
+    }
+
+    /// <summary> Randomly colors the tiles of the tic-tac-toe board
+    /// </summary>
+    public void RandomizeTileColors() {
+        Random rng = new();
+        int red;
+        int green;
+        int blue;
+        int alpha;
+
+        foreach ( Button tile in grid ) {
+            red = rng.Next( 255 );
+            green = rng.Next( 255 );
+            blue = rng.Next( 255 );
+            // alpha is offset so that way the colors appear lighter and it's more visibl
+            alpha = rng.Next( 128 ) + 64;       
+            tile.BackgroundColor = Color.FromRgba( red, green, blue, alpha );
+        }
     }
 
     /// <summary>
     /// Resets the grid buttons so their content is all ""
     /// </summary>
     private void ResetGame() {
-        Tile00.Text = "";
-        Tile10.Text = "";
-        Tile20.Text = "";
-
-        Tile01.Text = "";
-        Tile11.Text = "";
-        Tile21.Text = "";
-
-        Tile02.Text = "";
-        Tile12.Text = "";
-        Tile22.Text = "";
-
+        foreach (Button tile in grid) {
+            tile.Text = "";
+        }
+        RandomizeTileColors();
         ticTacToe.ResetGame();
+        gameOver = false;
+        StartGameTimer();
+    }
+
+
+    /// <summary> Adds a new tic-tac-toe game result to the bit.io database
+    /// </summary>
+    public void AddResultEntry(int id, String date, String winner, String time) {
+        db.AddResultEntry( new ResultEntry( id, date, winner, time ) );
     }
 }

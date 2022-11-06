@@ -1,0 +1,29 @@
+[33mcommit e3a4d4943b795cce6746297596b0cc069568d433[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Thomas <79444479+tpelican@users.noreply.github.com>
+Date:   Sat Nov 5 23:08:33 2022 -0500
+
+    reformatted .cs files and filled in top comments
+
+[33mcommit 15dc8a45cdea6dd655c789cbfd48b100041d4fcf[m
+Author: ShabbarKazmi <shabbarhassan329@gmail.com>
+Date:   Sat Nov 5 21:21:38 2022 -0500
+
+    Implemented Reset Game and made sure that a popup comes when game is finished and also added feature so that score increments
+
+[33mcommit b2ea75d524051768a630690c982e73f192362c06[m
+Author: rogersm <rogersm@uwosh.edu>
+Date:   Tue Nov 1 11:01:42 2022 -0500
+
+    Upgraded to .NET MAUI (deleted MainWindow)
+
+[33mcommit 24db3c0f117b0fdd33abca594cb4f4d646993390[m
+Author: rogersm <rogersm@uwosh.edu>
+Date:   Tue Nov 1 10:57:31 2022 -0500
+
+    Second commit
+
+[33mcommit b87c9ee3022f24903c111f95bffb07a58f7b8df0[m
+Author: rogersm <rogersm@uwosh.edu>
+Date:   Tue Nov 1 10:56:23 2022 -0500
+
+    First commit
