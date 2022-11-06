@@ -10,7 +10,6 @@
  * still a valueable experience for both of us because we got valueable 
  * experience with forking repos, GitHub, and paired programming.
  */
-
 /// <summary>
 /// The MainPage, this is a 1-screen app
 /// </summary>
