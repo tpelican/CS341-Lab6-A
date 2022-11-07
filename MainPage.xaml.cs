@@ -5,7 +5,7 @@ namespace Lab6Starter;
 /**
  * Name: Shabbar & Thomas
  * Date: 11/05/2022
- * Description:This the main page for the Tic-Tac-Toe application
+ * Description: This the main content page for the Tic-Tac-Toe application
  * Bugs: n/a
  * Reflection: It was okay. The scoring, celebratory message, and game reset
  * feature was mistakenly done before A forked B's repo. However, it was
@@ -109,7 +109,6 @@ public partial class MainPage : ContentPage {
             XScoreLBL.Text = String.Format( "X's Score: {0}", ++ticTacToe.XScore );
             OScoreLBL.Text = String.Format( "O's Score: {0}", ticTacToe.OScore );
         }
-        System.Diagnostics.Debug.WriteLine( "\n\n\n\n" + new DateTime().Date.ToString() );
         AddResultEntry(
             db.GetEntries().Count + 1,
             DateOnly.FromDateTime( DateTime.Now ).ToString(),

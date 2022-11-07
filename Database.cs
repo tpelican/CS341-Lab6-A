@@ -11,7 +11,7 @@ namespace Lab6Starter;
 /**
  * Name: Shabbar & Thomas
  * Date: 11/05/2022
- * Description:This the main page for the Tic-Tac-Toe application
+ * Description: This is the database class that allows connections to bit.io
  * Bugs: n/a
  * Reflection: It was fairly simple, but a valueable experience in 
  * forking repos, GitHub, and paired programming.
@@ -73,11 +73,11 @@ internal class Database {
         try {
             NpgsqlConnection con = new NpgsqlConnection( connectionString );
             con.Open();
-            var sql = "SELECT * FROM \"results\" limit 10;";
+            var sql = "SELECT * FROM \"results\"";
             using var cmd = new NpgsqlCommand( sql, con );
             using NpgsqlDataReader reader = cmd.ExecuteReader();
 
-            // Columns are clue, answer, difficulty, date, id in that order ...
+            // Columns are id, date, winner, time, id in that order ...
             // Show all data
             while ( reader.Read() ) {
                 for ( int colNum = 0; colNum < reader.FieldCount; colNum++ ) {
