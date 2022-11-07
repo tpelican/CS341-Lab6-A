@@ -12,15 +12,15 @@
             <HorizontalStackLayout Padding="10" Spacing="10" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
 
             <VerticalStackLayout>
-                <HorizontalStackLayout Spacing="100" BackgroundColor="White"
-                                       VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <!--These are the labels above the list-->
+                    <HorizontalStackLayout Spacing="110" Padding ="5" BackgroundColor="SlateGrey" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                     <Label
                                         Grid.Row="0"
                                         Grid.Column="0"
                                         FontSize="18"
                                         Text="Id"
                                         TextColor="Black"
-                                        BackgroundColor="White"
+                                        BackgroundColor="SlateGrey"
                                         FontAttributes="Bold,Italic"/>
                     <Label
                                         Grid.Row="0"
@@ -28,7 +28,7 @@
                                         FontSize="18"
                                         Text="Date"
                                         TextColor="Black"
-                                        BackgroundColor="White"
+                                        BackgroundColor="SlateGrey"
                                         FontAttributes="Bold,Italic"/>
                     <Label
                                         Grid.Row="0"
@@ -36,7 +36,7 @@
                                         FontSize="18"
                                         Text="Winner"
                                         TextColor="Black"
-                                        BackgroundColor="White"
+                                        BackgroundColor="SlateGrey"
                                         FontAttributes="Bold,Italic"/>
                     <Label
                                         Grid.Row="0"
@@ -44,7 +44,7 @@
                                         FontSize="18"
                                         Text="Duration"
                                         TextColor="Black"
-                                        BackgroundColor="White"
+                                        BackgroundColor="SlateGrey"
                                         FontAttributes="Bold,Italic"/>
 
                 </HorizontalStackLayout>
@@ -60,10 +60,11 @@
                     SeparatorColor="MidnightBlue"
                     VerticalOptions="Fill">
 
-                    <ListView.ItemTemplate>
+                        <!--Below shows the list of game results-->
+                        <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid ColumnSpacing="100" Padding="5" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                <Grid ColumnSpacing="80" Padding="5" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
 
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
@@ -71,32 +72,41 @@
 
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Label
                                         Grid.Row="1"
                                         Grid.Column="0"
                                         FontSize="18"
                                         Text="{Binding Id}"
+                                        HorizontalOptions="Center"
+                                        HorizontalTextAlignment="Center"
                                         TextColor="Black"/>
+                                    
                                     <Label
                                         Grid.Row="1"
                                         Grid.Column="1"
                                         FontSize="18"
                                         Text="{Binding Date}"
+                                        HorizontalOptions="Center"
+                                        HorizontalTextAlignment="Center"
                                         TextColor="Black"/>
                                     <Label
                                         Grid.Row="1"
                                         Grid.Column="2"
                                         FontSize="18"
+                                        HorizontalOptions="Center"
+                                        HorizontalTextAlignment="Center"
                                         Text="{Binding Winner}"
                                         TextColor="Black"/>
                                     <Label
                                         Grid.Row="1"
                                         Grid.Column="3"
                                         FontSize="18"
+                                        HorizontalOptions="Center"
+                                        HorizontalTextAlignment="Center"
                                         Text="{Binding Time}"
                                         TextColor="Black"/>
                                 </Grid>
@@ -138,4 +148,3 @@
        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
-
